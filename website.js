@@ -1,73 +1,155 @@
-let buta=document.querySelector('#but1');
-let butb=document.querySelector('#but2');
-let butc=document.querySelector('#but3');
-let imge1=document.querySelector('#img1');
-let imge2=document.querySelector('#img2');
-let imge3=document.querySelector('#img3');
+// select box 
 
-let dropd1=document.querySelector('#klu2');
-let dropd2=document.querySelector('.inside22');
-let dropd3=document.querySelector('#klu3');
-let logoq1=document.querySelector('#logo');
 
-dropd3.addEventListener('mouseover',()=>{
-logoq1.style.background='green';
-logoq1.style.color='whitesmoke';
+
+
+//
+
+
+
+
+var i = 0;
+var txt = ` CRICKET CAREERS`;
+let typer = () => {
+
+  if (i < txt.length) {
+    document.getElementById("navbrand").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typer, 100);
+  }
+}
+
+ typer();
+
+var it = 0;
+var text = `- WELCOME TO CRICKET CAREERS ..`;
+let typ = () => {
+
+  if (it < text.length) {
+    document.getElementById("dem").innerHTML += text.charAt(it);
+    it++;
+    setTimeout(typ, 90);
+  }
+}
+typ();
+
+
+let searchbtn = document.querySelector('#clickme');
+
+
+
+
+
+
+let stats = document.querySelector('#statstable');
+
+
+
+
+searchbtn.addEventListener('click', () => {
+
+  let r = new XMLHttpRequest();
+  r.open('GET', 'player.json', true);
+  r.send();
+
+  r.onload = () => {
+
+    if (r.status === 200) {
+      let f = r.responseText;
+      let ff = JSON.parse(f);
+      gg(ff);
+
+    }
+  }
 
 });
-dropd3.addEventListener('mouseout',()=>{
-    logoq1.style.background='linear-gradient(to right,orange,white,green)';
-    logoq1.style.color='red';
+let gg = (user) => {
+
+  let cards = document.querySelector('#fama');
+  let inputbtn = document.querySelector('#inputvalue');
+  let inputvalue = inputbtn.value.toLowerCase();
+
+
+// select
+
+
+
+  console.log(inputvalue)
+  let men;
+  let k;
+  let dataFound = false;
+  for (let key in user) {
+
+    console.log(key)
+    if (user[key].name==inputvalue || user[key].jerseynumber == (inputvalue)) {
+      dataFound = true;
+      
+      
+        
+      
+      men = `
+      <div class="col-lg-5 my-3">
+
+      <div id="card1" class="card">
+          <img src="${user[key].pimg}" alt="" class="img-fluid">
+          <div class="card-body">
+          
+              <h5 class="card-title">career</h5>
+              <p class="card-text"><kbd>Profile</kbd><br><br>
+                  ${user[key].career}
+                  </p>
+                  
+                  <button  id="readmore" class="btn btn-primary" style="width:150px">READ MORE</button>
+          </div>
+      </div>
+  </div>
+  <div id="statstable" class="container table-responsive-md">
+  ${user[key].careerstats}
+      </div>`;
+      
+break;
+
     
+    
+  }
+  if (!dataFound) {
+
+    men = `<h1>No Data Found</h1>`;
+    
+
+  }
+  
+}
+  cards.innerHTML = men;
+  
+  let moretxt = document.querySelector('#moretext');
+  let readmorebtn = document.querySelector('#readmore');
+let dotted = document.querySelector('#dot');
+
+  
+  
+
+
+    readmorebtn.addEventListener('click', () => {
+
+      if (dotted.style.display === 'none') {
+
+        dotted.style.display = 'inline';
+        readmorebtn.innerHTML = 'READMORE';
+        moretxt.style.display = 'none';
+
+      }
+      else {
+        dotted.style.display = 'none';
+        readmorebtn.innerHTML = 'READLESS';
+        moretxt.style.display = 'block';
+
+      }
+
     });
 
-
-setInterval(() => {
-    imge1.src='2.jpg'
-    
-    buta.style.background='linear-gradient(to right,orangered,whitesmoke,green)';
-butb.style.background='whitesmoke';
-butc.style.background='whitesmoke';
-
-}, 5000);
-
-setInterval(() => {
-    imge1.src='nat_img3.jpg'
-    
-    buta.style.background='white';
-butb.style.background='linear-gradient(to right,orangered,whitesmoke,green)';
-butc.style.background='whitesmoke';
-
-}, 3000);
-
-setInterval(() => {
-    imge1.src='nat_img5.jpg'
-    
-    buta.style.background='white';
-butb.style.background='whitesmoke';
-butc.style.background='linear-gradient(to right,orangered,whitesmoke,green)';
-
-}, 7500);
-
-
-
-setInterval(() => {
-    let matter1=document.querySelector('#matter');
-
-    let matter3='"The world is a book and those who do not travel read only one page.” <br>~ Saint Augustine';
-    matter1.innerHTML=matter3;
-    matter1.style.padding="11px";
-
-}, 5000);
-
-
-setInterval(() => {
-    let matter12=document.querySelector('#matter');
-
-    let matter2="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam ipsum veniam sequi qui perspiciatis! ";
-    matter12.innerHTML=matter2;
-    matter12.style.padding="20px";
-}, 12000);
+  }
+  
 
 
 
@@ -86,45 +168,23 @@ setInterval(() => {
 
 
 
-/*
-buta.addEventListener('click',()=>{
 
-imge1.style.borderRadius="5px";
-imge2.style.display='none';
-imge1.style.display='block';
-imge3.style.display='none';
-buta.style.background='linear-gradient(to right,orangered,whitesmoke,green)';
-butb.style.background='whitesmoke';
-butc.style.background='whitesmoke';
 
-    
-});
 
-butb.addEventListener('click',()=>{
 
-    imge2.style.borderRadius="5px";
-    imge2.style.display='block';
-    imge1.style.display='none';
-    imge3.style.display='none';
-    buta.style.background='whitesmoke';
-    butb.style.background='linear-gradient(to right,orangered,whitesmoke,green)';
-    butc.style.background='whitesmoke';
 
-    
-    });
-    
-    butc.addEventListener('click',()=>{
 
-        imge3.style.borderRadius="5px";
-        imge2.style.display='none';
-        imge1.style.display='none';
-        imge3.style.display='block';
-        buta.style.background='whitesmoke';
-        butb.style.background='whitesmoke';
-        butc.style.background='linear-gradient(to right,orangered,whitesmoke,green)';
 
-    
-        
-        });
-        
-*/
+
+
+
+
+
+// prime numbers js
+
+
+
+
+
+
+//end of primenumbers script
